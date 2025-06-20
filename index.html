@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor's Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #e63946;
+            --dark-gray: #1a1a1a;
+            --light-gray-bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --light-text: #6b7280;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-gray-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* General container styling */
+        .profile-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Section styling */
+        .profile-section {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid #ef4444; /* Tailwind red-500 */
+            padding-bottom: 0.75rem;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+        }
+
+        /* Profile Details */
+        .profile-details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) { /* Small screens and up */
+            .profile-details-grid {
+                grid-template-columns: 150px 1fr; /* Image width and details */
+            }
+        }
+
+        .profile-image-upload {
+            width: 150px;
+            height: 150px;
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+            border: 2px dashed #d1d5db; /* Tailwind gray-300 */
+            border-radius: 0.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #6b7280; /* Tailwind gray-500 */
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-align: center;
+            overflow: hidden; /* For uploaded image preview */
+            position: relative;
+        }
+
+        .profile-image-upload img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .profile-info p {
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        .profile-info span {
+            font-weight: 600; /* Semibold */
+            color: var(--primary-red);
+            margin-right: 0.5rem;
+        }
+        .profile-info span.value {
+            font-weight: 400; /* Regular */
+            color: var(--text-color);
+        }
+
+        /* Donation History */
+        .donation-stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 1rem;
+        }
+
+        .stat-item {
+            flex: 1 1 30%; /* Flexible sizing */
+            min-width: 100px; /* Minimum width for each item */
+            padding: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin-top: 0.25rem;
+        }
+
+        .level-stars .fa-star {
+            color: #ffbf00; /* Gold color for stars */
+            font-size: 1.25rem;
+            margin: 0 2px;
+        }
+
+        .previous-donations-list {
+            max-height: 150px; /* Fixed height for scrollable list */
+            overflow-y: auto;
+            border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+        }
+
+        .donation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e5e7eb;
+        }
+
+        .donation-item:last-child {
+            border-bottom: none;
+        }
+
+        .donation-item .date {
+            font-weight: 500;
+        }
+
+        .donation-item .icon-container {
+            background-color: var(--primary-red);
+            color: white;
+            border-radius: 0.25rem;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .donation-item .icon-container .fa-hand-holding-droplet {
+            font-size: 0.9rem; /* Adjust icon size */
+        }
+
+
+        /* History Lists (Request & Booked) */
+        .history-list .history-item {
+            background-color: #f9f9f9; /* Light background for items */
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-list .history-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .history-list .history-item span {
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .history-list .details-btn {
+            background-color: #e84a4a; /* Red color */
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: none;
+        }
+
+        .history-list .details-btn:hover {
+            background-color: #cc3333;
+        }
+
+        /* Modal Styles - Shared with original modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 400px; /* Max width for consistency with other modals */
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        .modal-close-btn:hover {
+            color: #1a202c;
+        }
+
+        /* Specific styling for the blood request card inside the modal */
+        .modal-blood-request-card {
+            width: 100%; /* Ensure it takes full width of modal */
+            margin: 0 auto; /* Center within modal */
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <header class="profile-header">
+            <h1 class="profile-title">Donor's Profile</h1>
+        </header>
+
+        <section class="profile-section">
+            <h2 class="section-title">Personal Information</h2>
+            <div class="profile-details-grid">
+                <div class="profile-image-upload" id="imageUploadArea">
+                    <input type="file" id="imageInput" accept="image/*" class="hidden">
+                    <i class="fas fa-camera text-4xl mb-2"></i>
+                    <span>Upload Image</span>
+                    <img id="profileImagePreview" src="" alt="Profile Preview" class="hidden">
+                </div>
+                <div class="profile-info">
+                    <p><span class="font-bold">Name:</span> <span class="value">Abe Rectal IBND Creacion</span></p>
+                    <p><span class="font-bold">Age:</span> <span class="value">27</span></p>
+                    <p><span class="font-bold">Blood Group:</span> <span class="value">B+</span></p>
+                    <p><span class="font-bold">Contact:</span> <span class="value">017-XXXXXXXX</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-section">
+            <h2 class="section-title">Donation History</h2>
+            <div class="donation-stats">
+                <div class="stat-item">
+                    <div class="level-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i> <!-- Empty star for level 3 of 3 -->
+                    </div>
+                    <div class="stat-label">Level 3</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">30</div>
+                    <div class="stat-label">Total Donations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">37</div>
+                    <div class="stat-label">Days Remains</div>
+                </div>
+            </div>
+            
+            <h3 class="text-lg font-semibold text-gray-700 mb-3">Previous Donations</h3>
+            <div class="previous-donations-list">
+                <div class="donation-item">
+                    <span class="date">20/07/2024</span>
+                    <span class="icon-container"><i class="fas fa-hand-holding-droplet"></i> Blood</span>
+                </div>
+                <div class="donation-item">
+                    <span class="date">20/10/2023</span>
+                    <span class="icon-container"><i class="fas fa-hand-holding-droplet"></i> Blood</span>
+                </div>
+                <div class="donation-item">
+                    <span class="date">20/04/2023</span>
+                    <span class="icon-container"><i class="fas fa-hand-holding-droplet"></i> Blood</span>
+                </div>
+                <div class="donation-item">
+                    <span class="date">20/01/2023</span>
+                    <span class="icon-container"><i class="fas fa-hand-holding-droplet"></i> Blood</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-section">
+            <h2 class="section-title">Your Request History</h2>
+            <div class="history-list">
+                <div class="history-item" data-request-id="1">
+                    <span>You posted a request for A+ blood</span>
+                    <button class="details-btn">See Details</button>
+                </div>
+                <div class="history-item" data-request-id="2">
+                    <span>You've requested B+ blood</span>
+                    <button class="details-btn">See Details</button>
+                </div>
+                <div class="history-item" data-request-id="3">
+                    <span>You're requesting O- blood (Pending)</span>
+                    <button class="details-btn">See Details</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-section">
+            <h2 class="section-title">Your Booked History</h2>
+            <div class="history-list">
+                <div class="history-item">
+                    <span>You've booked 2 bags of A+ blood from Ibna Sina</span>
+                    <button class="details-btn">See Details</button>
+                </div>
+                <div class="history-item">
+                    <span>You're booking B- blood from Square Hospital (Pending)</span>
+                    <button class="details-btn">See Details</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Blood Request Details Modal (New Modal) -->
+    <div id="requestDetailsModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="closeRequestDetailsModalBtn">&times;</button>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Blood Request Details</h2>
+            <div id="bloodRequestDetailsContent">
+                <!-- Blood request card details will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageUploadArea = document.getElementById('imageUploadArea');
+            const imageInput = document.getElementById('imageInput');
+            const profileImagePreview = document.getElementById('profileImagePreview');
+
+            imageUploadArea.addEventListener('click', () => {
+                imageInput.click();
+            });
+
+            imageInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        profileImagePreview.src = e.target.result;
+                        profileImagePreview.classList.remove('hidden');
+                        imageUploadArea.querySelector('i').classList.add('hidden');
+                        imageUploadArea.querySelector('span').classList.add('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // --- Blood Request Details Modal Logic ---
+            const requestDetailsModal = document.getElementById('requestDetailsModal');
+            const closeRequestDetailsModalBtn = document.getElementById('closeRequestDetailsModalBtn');
+            const bloodRequestDetailsContent = document.getElementById('bloodRequestDetailsContent');
+            const seeDetailsButtons = document.querySelectorAll('.history-list .details-btn');
+
+            // Sample blood request data (ideally fetched from a database)
+            // The IDs here correspond to the `data-request-id` in the HTML
+            const bloodRequestsData = {
+                1: {
+                    title: "Urgent Blood Needed!",
+                    bloodGroup: "A+",
+                    patientName: "Tahmim mirza tulak",
+                    condition: "Gun Shot Wound",
+                    quantity: "2 bags",
+                    location: "Ibna Sina, Badda",
+                    description: "Urgent blood needed for my friend, he is shot and in ICU. Doctor said he has losing blood very fast, and is in need of emergency blood. If anyone is around please help !"
+                },
+                2: {
+                    title: "Urgent Blood Needed!",
+                    bloodGroup: "B+",
+                    patientName: "Jane Doe",
+                    condition: "Surgery",
+                    quantity: "1 bag",
+                    location: "Square Hospital",
+                    description: "My mother is undergoing urgent surgery and needs a blood transfusion. Please help if you can!"
+                },
+                3: {
+                    title: "Urgent Blood Needed!",
+                    bloodGroup: "O-",
+                    patientName: "John Smith",
+                    condition: "Accident",
+                    quantity: "3 bags",
+                    location: "United Hospital",
+                    description: "Friend involved in an accident, critical condition, needs blood urgently. Your help would be greatly appreciated!"
+                }
+            };
+
+            // Function to generate a blood request card HTML string
+            function generateBloodRequestCardHtml(data) {
+                if (!data) {
+                    return '<p class="text-red-500">Request details not found.</p>';
+                }
+                return `
+                    <div class="blood-request-card modal-blood-request-card" data-blood-group="${data.bloodGroup}">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="card-title">${data.title}</h3>
+                            <span class="blood-group-badge">${data.bloodGroup}</span>
+                        </div>
+                        <div class="patient-details">
+                            <p><i class="fas fa-user-injured"></i><span class="font-semibold">Patient Name:</span> ${data.patientName}</p>
+                            <p><i class="fas fa-notes-medical"></i><span class="font-semibold">Condition:</span> ${data.condition}</p>
+                            <p><i class="fas fa-hand-holding-medical"></i><span class="font-semibold">Quantity:</span> ${data.quantity}</p>
+                            <p><i class="fas fa-map-marker-alt"></i><span class="font-semibold">Location:</span> ${data.location}</p>
+                        </div>
+                        <p class="description">${data.description}</p>
+                        <!-- Optionally add a "Donate" button here if applicable within the modal context -->
+                        <button class="donate-blood-btn mt-4">Contact to Donate</button>
+                    </div>
+                `;
+            }
+
+            // Show the request details modal
+            function showRequestDetailsModal(requestId) {
+                const requestData = bloodRequestsData[requestId];
+                bloodRequestDetailsContent.innerHTML = generateBloodRequestCardHtml(requestData);
+                requestDetailsModal.classList.add('show');
+            }
+
+            // Hide the request details modal
+            function hideRequestDetailsModal() {
+                requestDetailsModal.classList.remove('show');
+                bloodRequestDetailsContent.innerHTML = ''; // Clear content when hidden
+            }
+
+            // Event listeners for "See Details" buttons
+            seeDetailsButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const requestId = event.target.closest('.history-item').dataset.requestId;
+                    showRequestDetailsModal(requestId);
+                });
+            });
+
+            // Event listener for closing the modal
+            closeRequestDetailsModalBtn.addEventListener('click', hideRequestDetailsModal);
+            requestDetailsModal.addEventListener('click', (event) => {
+                if (event.target === requestDetailsModal) { // Clicked on overlay
+                    hideRequestDetailsModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

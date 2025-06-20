@@ -1,0 +1,628 @@
+/*header*/
+/* General Styles */
+        :root {
+            --primary: #e63946;
+            --secondary: #f1faee;
+            --dark: #1a1a1a; /* Updated to match footer */
+            --light: #f8f9fa;
+            --accent: #a8dadc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles - Updated to match footer */
+        .rokto-header {
+            background-color: var(--dark);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+             font-style: normal;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo p {
+            align-items: center;
+            color: #E31616;
+            margin-bottom: 0px;
+            font-size: 40px;
+            letter-spacing: 8px;
+        }
+        .LogoImg {
+            width: 36px;
+            height: auto;
+
+
+        }
+
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+           
+            
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 300;
+            padding: 0.5rem 0;
+            position: relative;
+            margin-left: 15px;
+            letter-spacing: 2px;
+
+        }
+        .main-nav a:hover{
+             background-color: #D23131;
+            font-weight: 300;
+            padding-right: 14px;
+            padding-left: 14px;
+            border-radius: 8px;
+           transition: all 0.2s ease; 
+           letter-spacing: 2px;
+        }
+
+        .main-nav .active a {
+            background-color: #D23131;
+            font-weight: 300;
+            padding-right: 14px;
+            padding-left: 14px;
+            border-radius: 8px;
+            letter-spacing: 3px;
+        }
+
+        .main-nav .active a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+           
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-selector select {
+            border: 1px solid #555;
+            padding: 0.5rem;
+            border-radius: 4px;
+            background-color: var(--dark);
+            color: white;
+             font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+        }
+
+        .user-icon {
+            margin-top: 10px;
+            width: 42px;
+            height: 42px;
+            border-radius: 20%;
+            object-fit: cover;
+        }
+        .user-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background-color: var(--dark);
+    border: 1px solid #555;
+    border-radius: 4px;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+
+    /* Start hidden */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+}
+
+.dropdown-menu a:hover {
+    background-color: #333;
+}
+
+
+
+
+
+:root {
+    --primary-red: #e63946;
+    --dark-gray: #1a1a1a;
+    --light-gray-bg: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --light-text: #6b7280;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-gray-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* General container styling */
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Section styling */
+.profile-section {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid #ef4444; /* Tailwind red-500 */
+    padding-bottom: 0.75rem;
+}
+
+/* Profile Header */
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+}
+
+/* Profile Details */
+.profile-details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (min-width: 640px) { /* Small screens and up */
+    .profile-details-grid {
+        grid-template-columns: 150px 1fr; /* Image width and details */
+    }
+}
+
+.profile-image-upload {
+    width: 150px;
+    height: 150px;
+    background-color: #f3f4f6; /* Tailwind gray-100 */
+    border: 2px dashed #d1d5db; /* Tailwind gray-300 */
+    border-radius: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #6b7280; /* Tailwind gray-500 */
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden; /* For uploaded image preview */
+    position: relative;
+}
+
+.profile-image-upload img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.profile-info p {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.profile-info span {
+    font-weight: 600; /* Semibold */
+    color: var(--primary-red);
+    margin-right: 0.5rem;
+}
+.profile-info span.value {
+    font-weight: 400; /* Regular */
+    color: var(--text-color);
+}
+
+/* Donation History */
+.donation-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1rem;
+}
+
+.stat-item {
+    flex: 1 1 30%; /* Flexible sizing */
+    min-width: 100px; /* Minimum width for each item */
+    padding: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    margin-top: 0.25rem;
+}
+
+.level-stars .fa-star {
+    color: #ffbf00; /* Gold color for stars */
+    font-size: 1.25rem;
+    margin: 0 2px;
+}
+
+.previous-donations-list {
+    max-height: 150px; /* Fixed height for scrollable list */
+    overflow-y: auto;
+    border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+}
+
+.donation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #e5e7eb;
+}
+
+.donation-item:last-child {
+    border-bottom: none;
+}
+
+.donation-item .date {
+    font-weight: 500;
+}
+
+.donation-item .icon-container {
+    background-color: var(--primary-red);
+    color: white;
+    border-radius: 0.25rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+.donation-item .icon-container .fa-hand-holding-droplet {
+    font-size: 0.9rem; /* Adjust icon size */
+}
+
+
+/* History Lists (Request & Booked) */
+.history-list .history-item {
+    background-color: #f9f9f9; /* Light background for items */
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-list .history-item:last-child {
+    margin-bottom: 0;
+}
+
+.history-list .history-item span {
+    font-weight: 500;
+    color: var(--dark-gray);
+}
+
+.history-list .details-btn {
+    background-color: #e84a4a; /* Red color */
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.history-list .details-btn:hover {
+    background-color: #cc3333;
+}
+
+/* Modal Styles - Shared with original modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 400px; /* Max width for consistency with other modals */
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+.modal-overlay.show .modal-content {
+    transform: translateY(0);
+}
+.modal-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+}
+.modal-close-btn:hover {
+    color: #1a202c;
+}
+
+/* Specific styling for the blood request card inside the modal */
+.modal-blood-request-card {
+    width: 100%; /* Ensure it takes full width of modal */
+    margin: 0 auto; /* Center within modal */
+}
+
+/* Blood Request Card Styles (Copied from original index.html style) */
+.blood-request-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer, larger shadow */
+    border-left: 6px solid #ef4444; /* Thicker, prominent left border */
+    padding: 1.5rem; /* Increased padding */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack children vertically */
+}
+
+.blood-request-card:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+}
+
+.blood-request-card .blood-group-badge {
+    background-color: #ef4444; /* Red background */
+    color: white;
+    font-weight: 700; /* Bolder font */
+    padding: 0.3rem 0.8rem; /* More padding */
+    border-radius: 9999px; /* Fully rounded */
+    font-size: 0.9rem; /* Slightly larger font */
+    letter-spacing: 0.05em; /* Slightly spaced letters */
+}
+
+.blood-request-card .card-title {
+    font-size: 1.25rem; /* Larger title */
+    font-weight: 700; /* Bolder title */
+    color: #b91c1c; /* Darker red for title */
+    margin-bottom: 1rem; /* More space below title */
+}
+
+.blood-request-card .patient-details span:first-child {
+    font-weight: 600;
+    color: #374151; /* Darker gray for labels */
+}
+.blood-request-card .patient-details p {
+    display: flex; /* Flexbox for icon and text alignment */
+    align-items: center;
+    margin-bottom: 0.5rem; /* Space between detail lines */
+    font-size: 0.95rem; /* Slightly larger detail font */
+    color: #4b5563; /* Slightly darker text */
+}
+.blood-request-card .patient-details i {
+    color: #9ca3af; /* Icon color */
+    margin-right: 0.75rem; /* Space between icon and text */
+    width: 18px; /* Fixed width for icons */
+    text-align: center;
+}
+.blood-request-card .description {
+    font-size: 0.9rem; /* Consistent description font size */
+    color: #6b7280; /* Muted gray for description */
+    line-height: 1.5;
+    margin-top: 1rem; /* Space above description */
+    
+    /* Styles for 3-line limit with ellipsis */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.donate-blood-btn {
+    background-color: #e84a4a; /* Red color for donate button */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: block;
+    width: 100%; /* Full width */
+    margin-top: auto; /* Push button to the bottom */
+}
+.donate-blood-btn:hover {
+    background-color: #cc3333; /* Darker red on hover */
+}
+
+
+
+.rokto-footer {
+            background-color: var(--dark);
+            color: #fff;
+            padding: 2rem 0 0;
+             font-family: "Poppins", sans-serif;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+        }
+        .footerLogoImg{
+            margin: 0px;
+            width: 50px;
+            height: auto;
+        }
+
+
+        .footerSlogan {
+            color: white;
+            line-height: 1.8;
+            max-width: 250px;
+        }
+        
+
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .link-column h4 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .link-column ul {
+            list-style: none;
+        }
+
+        .link-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .link-column a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .link-column a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 0.9rem;
+        }
+

@@ -1,3 +1,12 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,285 +19,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Font: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-red: #e63946;
-            --dark-gray: #1a1a1a;
-            --light-gray-bg: #f0f2f5;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --light-text: #6b7280;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light-gray-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* General container styling */
-        .profile-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            background-color: var(--card-bg);
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Section styling */
-        .profile-section {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-red);
-            margin-bottom: 1.25rem;
-            border-bottom: 2px solid #ef4444; /* Tailwind red-500 */
-            padding-bottom: 0.75rem;
-        }
-
-        /* Profile Header */
-        .profile-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .profile-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark-gray);
-        }
-
-        /* Profile Details */
-        .profile-details-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        @media (min-width: 640px) { /* Small screens and up */
-            .profile-details-grid {
-                grid-template-columns: 150px 1fr; /* Image width and details */
-            }
-        }
-
-        .profile-image-upload {
-            width: 150px;
-            height: 150px;
-            background-color: #f3f4f6; /* Tailwind gray-100 */
-            border: 2px dashed #d1d5db; /* Tailwind gray-300 */
-            border-radius: 0.75rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: #6b7280; /* Tailwind gray-500 */
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-align: center;
-            overflow: hidden; /* For uploaded image preview */
-            position: relative;
-        }
-
-        .profile-image-upload img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .profile-info p {
-            margin-bottom: 0.75rem;
-            font-size: 1rem;
-            color: var(--text-color);
-        }
-
-        .profile-info span {
-            font-weight: 600; /* Semibold */
-            color: var(--primary-red);
-            margin-right: 0.5rem;
-        }
-        .profile-info span.value {
-            font-weight: 400; /* Regular */
-            color: var(--text-color);
-        }
-
-        /* Donation History */
-        .donation-stats {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
-            gap: 1rem;
-        }
-
-        .stat-item {
-            flex: 1 1 30%; /* Flexible sizing */
-            min-width: 100px; /* Minimum width for each item */
-            padding: 0.5rem;
-        }
-        
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark-gray);
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--light-text);
-            margin-top: 0.25rem;
-        }
-
-        .level-stars .fa-star {
-            color: #ffbf00; /* Gold color for stars */
-            font-size: 1.25rem;
-            margin: 0 2px;
-        }
-
-        .previous-donations-list {
-            max-height: 150px; /* Fixed height for scrollable list */
-            overflow-y: auto;
-            border: 1px solid #e5e7eb; /* Tailwind gray-200 */
-            border-radius: 0.5rem;
-            padding: 0.75rem;
-        }
-
-        .donation-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed #e5e7eb;
-        }
-
-        .donation-item:last-child {
-            border-bottom: none;
-        }
-
-        .donation-item .date {
-            font-weight: 500;
-        }
-
-        .donation-item .icon-container {
-            background-color: var(--primary-red);
-            color: white;
-            border-radius: 0.25rem;
-            padding: 0.3rem 0.5rem;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        .donation-item .icon-container .fa-hand-holding-droplet {
-            font-size: 0.9rem; /* Adjust icon size */
-        }
-
-
-        /* History Lists (Request & Booked) */
-        .history-list .history-item {
-            background-color: #f9f9f9; /* Light background for items */
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .history-list .history-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .history-list .history-item span {
-            font-weight: 500;
-            color: var(--dark-gray);
-        }
-
-        .history-list .details-btn {
-            background-color: #e84a4a; /* Red color */
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 0.5rem;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            border: none;
-        }
-
-        .history-list .details-btn:hover {
-            background-color: #cc3333;
-        }
-
-        /* Modal Styles - Shared with original modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            width: 90%;
-            max-width: 400px; /* Max width for consistency with other modals */
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-        .modal-overlay.show .modal-content {
-            transform: translateY(0);
-        }
-        .modal-close-btn {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #6b7280;
-        }
-        .modal-close-btn:hover {
-            color: #1a202c;
-        }
-
-        /* Specific styling for the blood request card inside the modal */
-        .modal-blood-request-card {
-            width: 100%; /* Ensure it takes full width of modal */
-            margin: 0 auto; /* Center within modal */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file -->
 </head>
 <body>
+    
+    <!-- Header or Nevber Design -->
+ 
+  <header class="rokto-header" >
+        <div class="header-top">
+            <div class="logo">
+                <p>Rokto</p>
+                <img class="LogoImg" src="rokto.png">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Campaign Fund</a></li>
+                    <li><a href="#">Request blood</a></li>
+                    <li><a href="#">Donate Blood</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Newsfeed</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+    <div class="language-selector">
+        <span>Language</span>
+        <select>
+            <option>English</option>
+            <option>বাংলা</option>
+        </select>
+    </div>
+
+    <div class="user-dropdown">
+        <img src="UserIcon.png" alt="User Icon" class="user-icon" onclick="toggleDropdown()">
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="Accounts.php">Log out</a> <!-- You can change the link later -->
+        </div>
+    </div>
+</div>
+        </div>
+        
+       
+    </header>
+
+
+<!-- Personal Profile Information Section -->
+
     <div class="profile-container">
         <header class="profile-header">
             <h1 class="profile-title">Donor's Profile</h1>
@@ -304,9 +79,9 @@
                     <img id="profileImagePreview" src="" alt="Profile Preview" class="hidden">
                 </div>
                 <div class="profile-info">
-                    <p><span class="font-bold">Name:</span> <span class="value">Abe Rectal IBND Creacion</span></p>
+                    <p><span class="font-bold">Name:</span> <span class="value">Abu Fattal Ibna Mahmud</span></p>
                     <p><span class="font-bold">Age:</span> <span class="value">27</span></p>
-                    <p><span class="font-bold">Blood Group:</span> <span class="value">B+</span></p>
+                    <p><span class="font-bold">Blood Group:</span> <span class="value">A+</span></p>
                     <p><span class="font-bold">Contact:</span> <span class="value">017-XXXXXXXX</span></p>
                 </div>
             </div>
@@ -397,6 +172,53 @@
             </div>
         </div>
     </div>
+
+
+<!-- Footer -->
+
+<footer class="rokto-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">
+                    <p  style="font-size: 60px;" class="footerLogoName">Rokto</p>
+                <img class="footerLogoImg" src="rokto.png">
+                </div>
+                <p class="footerSlogan">Ready to join?<br>Save Lives one drop at a Time join us Today.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Language</a></li>
+                    </ul>
+                </div>
+                
+                <div class="link-column">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">Rokto Fund</a></li>
+                        <li><a href="#">Donate Blood</a></li>
+                        <li><a href="#">Blogs</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Rokto Blood Donation Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -513,6 +335,20 @@
                 }
             });
         });
+            function toggleDropdown() {
+              const menu = document.getElementById("dropdownMenu");
+              menu.classList.toggle("show");
+           }
+
+// Optional: Close dropdown when clicking outside
+            document.addEventListener("click", function (event) {
+              const dropdown = document.getElementById("dropdownMenu");
+              const userIcon = document.querySelector(".user-icon");
+
+              if (!userIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                 dropdown.classList.remove("show");
+              }
+          });
     </script>
 </body>
 </html>
